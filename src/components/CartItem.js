@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { increase, removeItem, decrease } from '../features/cart/cartSlice';
@@ -33,7 +34,7 @@ const CartItem = ({
           className="amount-btn"
           onClick={() => {
             if (amount === 1) return dispatch(removeItem(id));
-            dispatch(decrease({ id }));
+            return dispatch(decrease({ id }));
           }}
         >
           <BsChevronDown />
@@ -41,6 +42,14 @@ const CartItem = ({
       </div>
     </article>
   );
+};
+
+CartItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 };
 
 export default CartItem;
